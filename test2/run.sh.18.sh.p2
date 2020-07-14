@@ -1,0 +1,6 @@
+#!/bin/bash
+echo  Caddyfile.18.conf.json
+echo "curl http://p2:32018/load -X POST -H 'Content-Type: application/json' -d @Caddyfile.18.conf.json"
+      curl http://p2:32018/load -X POST -H 'Content-Type: application/json' -d @Caddyfile.18.conf.json
+echo "curl http://p2:32018/load -X POST -H 'Content-Type: application/json' -d @Caddyfile.18.conf.json"
+echo  Caddyfile.18.conf.json

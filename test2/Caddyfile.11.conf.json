@@ -1,0 +1,37 @@
+[
+   {
+      "body" : [
+         [
+            "forwardproxy",
+            [
+               [
+                  "basicauth",
+                  "user",
+                  "pass"
+               ],
+               [
+                  "hide_ip"
+               ],
+               [
+                  "hide_via"
+               ]
+            ]
+         ],
+         [
+            "log",
+            "stdout"
+         ],
+         [
+            "root",
+            "/data/wwwroot/default"
+         ],
+         [
+            "tls",
+            "test@onebox.site"
+         ]
+      ],
+      "keys" : [
+         "test.onebox.site"
+      ]
+   }
+]

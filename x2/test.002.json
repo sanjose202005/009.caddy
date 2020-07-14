@@ -1,0 +1,96 @@
+{
+    "logging": {
+        "logs": {
+            "log001": {
+                "level": "DEBUG"
+            }
+        }
+    },
+    "admin" : {
+        "config" : {
+            "persist" : false
+        },
+        "disabled" : false,
+        "enforce_origin" : false,
+        "listen" : "127.0.0.1:2018",
+        "origins" : [
+            "127.0.0.1:2018"
+        ]
+    },
+    "apps" : {
+        "http" : {
+            "http_port" : 80,
+            "https_port" : 443,
+            "servers" : {
+                "jjj123.com" : {
+                    "listen" : [
+                        "0.0.0.0:443"
+                    ],
+                    "routes" : [
+                        {
+                            "handle" : [
+                                {
+                                    "body" : "\n\nHello, privacy, ip.jjj123.com !\n\n",
+                                    "handler" : "static_response"
+                                }
+                            ],
+                            "match" : [
+                                {
+                                    "host" : [
+                                        "ip.jjj123.com"
+                                        ]
+                                }
+                            ]
+                        },
+                        {
+                            "handle" : [
+                                {
+                                    "body" : "\n\nHello, privacy, ak2.jjj123.com !\n\n",
+                                    "handler" : "static_response"
+                                }
+                            ],
+                            "match" : [
+                                {
+                                    "host" : [
+                                        "ak2.jjj123.com"
+                                        ]
+                                }
+                            ]
+                        },
+                        {
+                            "handle" : [
+                                {
+                                    "body" : "\n\nHello, privacy, ak3.jjj123.com !\n\n",
+                                    "handler" : "static_response"
+                                }
+                            ],
+                            "match" : [
+                                {
+                                    "host" : [
+                                        "ak3.jjj123.com"
+                                        ]
+                                }
+                            ]
+                        },
+                        {
+                            "handle" : [
+                                {
+                                    "handler": "templates",
+                                    "file_root": "/root/009.caddy.x/x2/src"
+                                }
+                            ],
+                            "match" : [
+                                {
+                                    "host" : [
+                                        "ak4.jjj123.com"
+                                        ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,70 @@
+{
+    "admin" : {
+        "config" : {
+            "persist" : false
+        },
+        "disabled" : false,
+        "enforce_origin" : false,
+        "listen" : "127.0.0.1:2017",
+        "origins" : [
+            "127.0.0.1:2017"
+        ]
+    },
+   "apps" : {
+      "http" : {
+         "http_port" : 3080,
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                   "127.0.0.1:3443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "reverse_proxy",
+                                       "headers" : {
+                                          "request" : {
+                                             "set" : {
+                                                "Host" : [
+                                                   "{http.reverse_proxy.upstream.host}"
+                                                ]
+                                             }
+                                          }
+                                       },
+                                       "transport" : {
+                                          "protocol" : "http",
+                                          "tls" : {}
+                                       },
+                                       "upstreams" : [
+                                          {
+                                             "dial" : "www.example.com:443"
+                                          }
+                                       ]
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "localhost",
+                              "127.0.0.1"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

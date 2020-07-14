@@ -1,0 +1,89 @@
+{
+    "admin" : {
+        "config" : {
+            "persist" : false
+        },
+        "disabled" : false,
+        "enforce_origin" : false,
+        "listen" : "127.0.0.1:2017",
+        "origins" : [
+            "127.0.0.1:2017"
+        ]
+    },
+   "apps" : {
+      "http" : {
+         "http_port" : 3080,
+         "https_port" : 3443,
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                  "127.0.0.1:3443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "reverse_proxy",
+                                       "headers" : {
+                                          "request" : {
+                                             "set" : {
+                                                "Host" : [
+                                                   "{http.reverse_proxy.upstream.host}"
+                                                ]
+                                             }
+                                          }
+                                       },
+                                       "transport" : {
+                                          "protocol" : "http",
+                                          "tls" : {}
+                                       },
+                                       "upstreams" : [
+                                          {
+                                             "dial" : "www.example.com:443"
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/api/"
+                                       ]
+                                    }
+                                 ]
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "file_server",
+                                       "hide" : [
+                                          "Caddyfile.4.conf"
+                                       ],
+                                       "root" : "src"
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "localhost",
+                              "127.0.0.1"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

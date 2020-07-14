@@ -1,0 +1,89 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:2018",
+      "origins" : [
+         "127.0.0.1:2018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 80,
+         "https_port" : 443,
+         "servers" : {
+            "jjj123.com" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "body" : "Hello, privacy, ip.jjj123.com !",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "body" : "Hello, privacy, ak2.jjj123.com !",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak2.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "body" : "Hello, privacy, ak3.jjj123.com !",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak3.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "body" : "Hello, privacy, ak4.jjj123.com !",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak4.jjj123.com"
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
+

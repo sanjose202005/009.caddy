@@ -1,0 +1,113 @@
+Usage of ./caddy_v1_forwardproxy.caddy:
+  -agree
+    	Agree to the CA's Subscriber Agreement
+  -ca string
+    	URL to certificate authority's ACME server directory (default "https://acme-v02.api.letsencrypt.org/directory")
+  -caddyfile-to-json
+    	From Caddyfile stdin to JSON stdout
+  -catimeout duration
+    	Default ACME CA HTTP timeout (default 30s)
+  -conf string
+    	Caddyfile to load (default "Caddyfile")
+  -cpu string
+    	CPU cap (default "100%")
+  -default-sni string
+    	If a ClientHello ServerName is empty, use this ServerName to choose a TLS certificate
+  -disable-http-challenge
+    	Disable the ACME HTTP challenge
+  -disable-tls-alpn-challenge
+    	Disable the ACME TLS-ALPN challenge
+  -disabled-metrics string
+    	Comma-separated list of telemetry metrics to disable
+  -email string
+    	Default ACME CA account email address
+  -env
+    	Enable to print environment variables
+  -envfile string
+    	Path to file with environment variables to load in KEY=VALUE format
+  -ginkgo.debug
+    	If set, ginkgo will emit node output to files when running in parallel.
+  -ginkgo.dryRun
+    	If set, ginkgo will walk the test hierarchy without actually running anything.  Best paired with -v.
+  -ginkgo.failFast
+    	If set, ginkgo will stop running a test suite after a failure occurs.
+  -ginkgo.failOnPending
+    	If set, ginkgo will mark the test suite as failed if any specs are pending.
+  -ginkgo.flakeAttempts int
+    	Make up to this many attempts to run each spec. Please note that if any of the attempts succeed, the suite will not be failed. But any failures will still be recorded. (default 1)
+  -ginkgo.focus string
+    	If set, ginkgo will only run specs that match this regular expression.
+  -ginkgo.noColor
+    	If set, suppress color output in default reporter.
+  -ginkgo.noisyPendings
+    	If set, default reporter will shout about pending tests. (default true)
+  -ginkgo.noisySkippings
+    	If set, default reporter will shout about skipping tests. (default true)
+  -ginkgo.parallel.node int
+    	This worker node's (one-indexed) node number.  For running specs in parallel. (default 1)
+  -ginkgo.parallel.streamhost string
+    	The address for the server that the running nodes should stream data to.
+  -ginkgo.parallel.synchost string
+    	The address for the server that will synchronize the running nodes.
+  -ginkgo.parallel.total int
+    	The total number of worker nodes.  For running specs in parallel. (default 1)
+  -ginkgo.progress
+    	If set, ginkgo will emit progress information as each spec runs to the GinkgoWriter.
+  -ginkgo.randomizeAllSpecs
+    	If set, ginkgo will randomize all specs together.  By default, ginkgo only randomizes the top level Describe, Context and When groups.
+  -ginkgo.regexScansFilePath
+    	If set, ginkgo regex matching also will look at the file path (code location).
+  -ginkgo.seed int
+    	The seed used to randomize the spec suite. (default 1594453478)
+  -ginkgo.skip string
+    	If set, ginkgo will only run specs that do not match this regular expression.
+  -ginkgo.skipMeasurements
+    	If set, ginkgo will skip any measurement specs.
+  -ginkgo.slowSpecThreshold float
+    	(in seconds) Specs that take longer to run than this threshold are flagged as slow by the default reporter. (default 5)
+  -ginkgo.succinct
+    	If set, default reporter prints out a very succinct report
+  -ginkgo.trace
+    	If set, default reporter prints out the full stack trace when a failure occurs
+  -ginkgo.v
+    	If set, default reporter print out all specs as they begin.
+  -grace duration
+    	Maximum duration of graceful shutdown (default 5s)
+  -host string
+    	Default host
+  -http-port int
+    	Default port to use for HTTP (default 80)
+  -http2
+    	Use HTTP/2 (default true)
+  -https-port int
+    	Default port to use for HTTPS (default 443)
+  -json-to-caddyfile
+    	From JSON stdin to Caddyfile stdout
+  -log string
+    	Process log file
+  -log-roll-compress
+    	Gzip-compress rolled process log files (default true)
+  -log-roll-mb int
+    	Roll process log when it reaches this many megabytes (0 to disable rolling) (default 100)
+  -log-timestamps
+    	Enable timestamps for the process log (default true)
+  -pidfile string
+    	Path to write pid file
+  -plugins
+    	List installed plugins
+  -port string
+    	Default port (default "2015")
+  -quic
+    	Use experimental QUIC
+  -quiet
+    	Quiet mode (no initialization output)
+  -revoke string
+    	Hostname for which to revoke the certificate
+  -root string
+    	Root path of default site (default ".")
+  -type string
+    	Type of server to run (default "http")
+  -validate
+    	Parse the Caddyfile but do not start the server
+  -version
+    	Show version

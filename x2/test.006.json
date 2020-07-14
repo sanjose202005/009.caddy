@@ -1,0 +1,185 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:2018",
+      "origins" : [
+         "127.0.0.1:2018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 80,
+         "https_port" : 443,
+         "servers" : {
+            "jjj123.com" : {
+               "errors" : {
+                  "routes" : [
+                     {
+                        "handle" : [
+                           {
+                              "body" : "ipx2",
+                              "handler" : "static_response"
+                           }
+                        ],
+                        "match" : [
+                           {
+                              "host" : [
+                                 "ipx2.jjj123.com"
+                              ]
+                           }
+                        ]
+                     },
+                     {
+                        "handle" : [
+                           {
+                              "body" : "72718181_unknown",
+                              "handler" : "static_response"
+                           }
+                        ]
+                     }
+                  ]
+               },
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "logs" : {
+                  "skip_hosts" : [
+                     "ip.jjj123.com",
+                     "ak2.jjj123.com",
+                     "ak3.jjj123.com",
+                     "ak4.jjj123.com"
+                  ],
+                  "skip_unmapped_hosts" : false
+               },
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ipip"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "file_root" : "/doc",
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "ipip/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com",
+                              "ak2.jjj123.com",
+                              "ak3.jjj123.com",
+                              "ak4.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ipx_server"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "file_root" : "/doc",
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "src/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ipx.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ipx2(1)"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                            "upstreams": [{
+                                "dial": "https://github.com/",
+                                "lookup_srv": "8.8.8.8",
+                                "max_requests": 3
+                            }],
+                           "handler" : "reverse_proxy"
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "file_root" : "/doc",
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "src/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ipx2.jjj123.com"
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "logging" : {
+      "logs" : {
+         "log001" : {
+            "level" : "DEBUG"
+         }
+      }
+   }
+}
+

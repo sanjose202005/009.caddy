@@ -1,0 +1,1 @@
+../bin/caddy.forwardproxy_v1.0.5.strip.bin.sh

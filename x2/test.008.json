@@ -1,0 +1,292 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:2018",
+      "origins" : [
+         "127.0.0.1:2018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 80,
+         "https_port" : 443,
+         "servers" : {
+            "ip2.ak2.ak3.ak4.ipx,ipx2" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "logs" : {
+                  "skip_hosts" : [
+                     "ip.jjj123.com",
+                     "ak2.jjj123.com",
+                     "ak3.jjj123.com",
+                     "ak4.jjj123.com"
+                  ],
+                  "skip_unmapped_hosts" : false
+               },
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ip_ak2_ak3_ak4_Server"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "file_root" : "/doc",
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "ipip/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com",
+                              "ak2.jjj123.com",
+                              "ak3.jjj123.com",
+                              "ak4.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ipxServer"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "handler" : "reverse_proxy",
+                           "headers" : {
+                              "request" : {
+                                 "set" : {
+                                    "host" : [
+                                       "{github.com:443}"
+                                    ]
+                                 }
+                              }
+                           },
+                           "transport" : {
+                              "dial_fallback_delay" : "10s",
+                              "dial_timeout" : "10s",
+                              "expect_continue_timeout" : "10s",
+                              "max_conns_per_host" : 10,
+                              "protocol" : "http",
+                              "response_header_timeout" : "10s",
+                              "tls" : {
+                                 "handshake_timeout" : "10s"
+                              }
+                           },
+                           "upstreams" : [
+                              {
+                                 "dial" : "github.com:443",
+                                 "max_requests" : 1
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ipx.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "headers",
+                                       "response" : {
+                                          "set" : {
+                                             "Server" : [
+                                                "ipx2ServerSubExample"
+                                             ]
+                                          }
+                                       }
+                                    },
+                                    {
+                                       "handler" : "rewrite",
+                                       "strip_path_prefix" : "/example"
+                                    },
+                                    {
+                                       "handle_response" : [
+                                          {
+                                             "status_code" : "200"
+                                          }
+                                       ],
+                                       "handler" : "reverse_proxy",
+                                       "headers" : {
+                                          "request" : {
+                                             "set" : {
+                                                "host" : [
+                                                   "{example.com:443}"
+                                                ]
+                                             }
+                                          }
+                                       },
+                                       "transport" : {
+                                          "dial_fallback_delay" : "10s",
+                                          "dial_timeout" : "10s",
+                                          "expect_continue_timeout" : "10s",
+                                          "max_conns_per_host" : 10,
+                                          "protocol" : "http",
+                                          "response_header_timeout" : "10s",
+                                          "tls" : {
+                                             "handshake_timeout" : "10s"
+                                          }
+                                       },
+                                       "upstreams" : [
+                                          {
+                                             "dial" : "example.com:443",
+                                             "max_requests" : 2
+                                          }
+                                       ]
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/example",
+                                          "/example/*"
+                                       ]
+                                    }
+                                 ],
+                                 "terminal" : true
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "headers",
+                                       "response" : {
+                                          "set" : {
+                                             "Server" : [
+                                                "ipx2ServerSubTest"
+                                             ]
+                                          }
+                                       }
+                                    },
+                                    {
+                                       "body" : "\r\n TestBody \r\n\r\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/test",
+                                          "/test/*"
+                                       ]
+                                    }
+                                 ],
+                                 "terminal" : true
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler": "forwordproxy"
+                                    },
+                                    {
+                                       "handler" : "headers",
+                                       "response" : {
+                                          "set" : {
+                                             "Server" : [
+                                                "ipx2ServerSubForr"
+                                             ]
+                                          }
+                                       }
+                                    },
+                                    {
+                                       "body" : "\r\n ForrBody \r\n\r\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ],
+                                 "terminal" : true
+                              }
+                           ]
+                        },
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ipx2ServerTopShowIpOrDirSrc"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "file_root" : "/doc",
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "src/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ipx2.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "logging" : {
+      "logs" : {
+         "log001" : {
+            "level" : "DEBUG"
+         }
+      }
+   }
+}
+

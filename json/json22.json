@@ -1,0 +1,121 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "",
+      "origins" : [
+         ""
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "servers" : {
+            "example" : {
+               "listen" : [
+                  ":2015"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "body" : "Hello, world!",
+                           "handler" : "static_response"
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      },
+      "pki" : {
+         "certificate_authorities" : {
+            "" : {
+               "install_trust" : false,
+               "intermediate" : {
+                  "certificate" : "",
+                  "format" : "",
+                  "private_key" : ""
+               },
+               "intermediate_common_name" : "",
+               "name" : "",
+               "root" : {
+                  "certificate" : "",
+                  "format" : "",
+                  "private_key" : ""
+               },
+               "root_common_name" : "",
+               "storage" : {}
+            }
+         }
+      },
+      "tls" : {
+         "automation" : {
+            "ocsp_interval" : 0,
+            "on_demand" : {
+               "ask" : "",
+               "rate_limit" : {
+                  "burst" : 0,
+                  "interval" : 0
+               }
+            },
+            "policies" : [
+               {
+                  "issuer" : {},
+                  "key_type" : "",
+                  "must_staple" : false,
+                  "on_demand" : false,
+                  "renewal_window_ratio" : 0,
+                  "storage" : {},
+                  "subjects" : [
+                     ""
+                  ]
+               }
+            ],
+            "renew_interval" : 0
+         },
+         "cache" : {
+            "capacity" : 0
+         },
+         "certificates" : {},
+         "session_tickets" : {
+            "disable_rotation" : false,
+            "disabled" : false,
+            "key_source" : {},
+            "max_keys" : 0,
+            "rotation_interval" : 0
+         }
+      }
+   },
+   "logging" : {
+      "logs" : {
+         "" : {
+            "encoder" : {},
+            "exclude" : [
+               ""
+            ],
+            "include" : [
+               ""
+            ],
+            "level" : "",
+            "sampling" : {
+               "first" : 0,
+               "interval" : 0,
+               "thereafter" : 0
+            },
+            "writer" : {}
+         }
+      },
+      "sink" : {
+         "writer" : {}
+      }
+   },
+   "storage" : {
+      "file_system" : {
+         "module" : "file_system",
+         "root" : ""
+      }
+   }
+}

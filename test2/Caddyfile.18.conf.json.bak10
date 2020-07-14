@@ -1,0 +1,42 @@
+{
+  "apps": {
+    "http": {
+      "servers": {
+        "srv0": {
+          "listen": [":443"],
+          "routes": [{
+            "handle": [{
+              "handler": "forward_proxy",
+              "hide_ip": true,
+              "hide_via": true,
+              "auth_user": "username",
+              "auth_pass": "password",
+              "probe_resistance": {"domain": "secret.localhost"}
+            }]
+          }, {
+            "match": [{"host": ["127.0.0.1", "localhost", "example.com", "www.example.com"]}],
+            "handle": [{
+              "handler": "file_server",
+              "root": "/var/www/html"
+            }],
+            "terminal": true
+          }],
+          "tls_connection_policies": [{
+            "match": {"sni": ["127.0.0.1", "localhost", "example.com", "www.example.com"]}
+          }]
+        }
+      }
+    },
+    "tls": {
+      "automation": {
+        "policies": [{
+          "subjects": ["127.0.0.1", "localhost", "example.com", "www.example.com"],
+          "issuer": {
+            "email": "admin@example.com",
+            "module": "acme"
+          }
+        }]
+      }
+    }
+  }
+}

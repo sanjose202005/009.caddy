@@ -1,0 +1,17 @@
+[
+   {
+      "body" : [
+         [
+            "forwardproxy",
+            []
+         ],
+         [
+            "root",
+            "/srv/index"
+         ]
+      ],
+      "keys" : [
+         "localhost"
+      ]
+   }
+]

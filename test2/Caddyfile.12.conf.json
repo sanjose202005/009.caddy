@@ -1,0 +1,37 @@
+[
+   {
+      "body" : [
+         [
+            "forwardproxy",
+            [
+               [
+                  "basicauth",
+                  "user",
+                  "pass"
+               ],
+               [
+                  "hide_ip"
+               ],
+               [
+                  "hide_via"
+               ]
+            ]
+         ],
+         [
+            "log",
+            "stdout"
+         ],
+         [
+            "root",
+            "/tmp"
+         ],
+         [
+            "tls",
+            "test@onebox.site"
+         ]
+      ],
+      "keys" : [
+         "https://localhost:40080"
+      ]
+   }
+]

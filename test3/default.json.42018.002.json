@@ -1,0 +1,73 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "servers" : {
+            "fwdproxy" : {
+               "automatic_https" : {
+                  "disable" : false,
+                  "disable_redirects" : true
+               },
+               "listen" : [
+                  ":443"
+               ],
+               "logs" : {},
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "handler" : "forward_proxy"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ],
+                                 "terminal" : true
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "This is the regular site.",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "terminal" : true
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

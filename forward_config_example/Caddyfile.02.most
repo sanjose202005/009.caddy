@@ -1,0 +1,7 @@
+localhost {
+  root /srv/index
+  forwardproxy {
+    basicauth userName01 passWord01
+    probe_resistance secret_Link
+  }
+}

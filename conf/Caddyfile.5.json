@@ -1,0 +1,83 @@
+{
+    "admin" : {
+        "config" : {
+            "persist" : false
+        },
+        "disabled" : false,
+        "enforce_origin" : false,
+        "listen" : "127.0.0.1:2017",
+        "origins" : [
+            "127.0.0.1:2017"
+        ]
+    },
+   "apps" : {
+      "http" : {
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                  ":3080"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "reverse_proxy",
+                           "headers" : {
+                              "request" : {
+                                 "set" : {
+                                    "Host" : [
+                                       "{http.reverse_proxy.upstream.host}"
+                                    ]
+                                 }
+                              }
+                           },
+                           "transport" : {
+                              "protocol" : "http",
+                              "tls" : {}
+                           },
+                           "upstreams" : [
+                              {
+                                 "dial" : "www.example.com:443"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            },
+            "srv1" : {
+               "listen" : [
+                  ":3443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "reverse_proxy",
+                           "headers" : {
+                              "request" : {
+                                 "set" : {
+                                    "Host" : [
+                                       "{http.reverse_proxy.upstream.host}"
+                                    ]
+                                 }
+                              }
+                           },
+                           "transport" : {
+                              "protocol" : "http",
+                              "tls" : {}
+                           },
+                           "upstreams" : [
+                              {
+                                 "dial" : "www.example.com:443"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

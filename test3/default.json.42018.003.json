@@ -1,0 +1,85 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 33380,
+         "servers" : {
+            "fake80Server":{
+               "listen" : [
+                  "0.0.0.0:33380"
+               ]
+            },
+            "fwdproxyServer443" : {
+               "experimental_http3": true,
+               "allow_h2c": true,
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "logs" : {},
+               "tls_connection_policies": [{
+                  "protocol_min": "tls1.2",
+                  "protocol_max": "tls1.2"
+               }],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "hide_ip": true,
+                                       "hide_via":true,
+                                       "handler" : "forward_proxy",
+                                       "acl":{
+                                          "allow all" : true
+                                       }
+                                    }
+                                 ],
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nThis is the regular site.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      },
+      "tls": {
+         "automation": {
+               "policies": [{
+                  "subjects": ["ip.jjj123.com", "ak2.jjj123.com"],
+                  "issuer": {
+                     "email": "ak2@jjj123.com",
+                     "module": "acme"
+                  }
+               }]
+         }
+      }
+   }
+}

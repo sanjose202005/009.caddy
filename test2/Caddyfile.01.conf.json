@@ -1,0 +1,19 @@
+[
+   {
+      "body" : [
+         [
+            "forwardproxy"
+         ],
+         [
+            "gzip"
+         ],
+         [
+            "log",
+            "access.log"
+         ]
+      ],
+      "keys" : [
+         "http://localhost:40443"
+      ]
+   }
+]

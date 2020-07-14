@@ -1,0 +1,136 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:2018",
+      "origins" : [
+         "127.0.0.1:2018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 80,
+         "https_port" : 443,
+         "servers" : {
+            "jjj123.com" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "logs" : {
+                  "skip_hosts" : [
+                     "ip.jjj123.com",
+                     "ak2.jjj123.com",
+                     "ak3.jjj123.com",
+                     "ak4.jjj123.com"
+                  ],
+                  "skip_unmapped_hosts" : false
+               },
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "body" : "\n\nHello, privacy, ip.jjj123.com !\n\n",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "body" : "\n\nHello, privacy, ak2.jjj123.com !\n\n",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak2.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "body" : "\n\nHello, privacy, ak3.jjj123.com !\n\n",
+                           "handler" : "static_response"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak3.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "browse": {
+                           },
+                           "root": "src/",
+                           "handler" : "file_server"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak4.jjj123.com"
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response": {
+                               "set" : {
+                                   "Server2": [
+                                       "xxxbbb2"
+                                   ],
+                                   "Server": [
+                                       "xxxbbb1"
+                                   ]
+                               }
+                           }
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ipx.jjj123.com"
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         }
+      }
+   },
+   "logging" : {
+      "logs" : {
+         "log001" : {
+            "level" : "DEBUG"
+         }
+      },
+      "sink" : {
+         "writer" : {
+            "output" : "stderr"
+         }
+      }
+   }
+}
+

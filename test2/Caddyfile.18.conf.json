@@ -1,0 +1,61 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+      	"https_port": 443,
+         "servers" : {
+            "srv0" : {
+               "automatic_https" : {
+                  "disable" : false,
+                  "disable_redirects": true
+               },
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak3.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "file_server",
+                           "root" : "/tmp/src"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "127.0.0.1",
+                              "localhost",
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

@@ -1,0 +1,27 @@
+[
+   {
+      "body" : [
+         [
+            "forwardproxy",
+            [
+               [
+                  "basicauth",
+                  "userName01",
+                  "passWord01"
+               ],
+               [
+                  "probe_resistance",
+                  "secret_Link"
+               ]
+            ]
+         ],
+         [
+            "root",
+            "/srv/index"
+         ]
+      ],
+      "keys" : [
+         "localhost"
+      ]
+   }
+]

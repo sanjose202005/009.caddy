@@ -1,0 +1,62 @@
+{
+    "admin" : {
+        "config" : {
+            "persist" : false
+        },
+            "disabled" : false,
+            "enforce_origin" : false,
+            "listen" : "127.0.0.1:42018",
+            "origins" : [
+                "127.0.0.1:42018"
+            ]
+    },
+        "apps": {
+            "http": {
+                "servers": {
+                    "fwdproxy": {
+                        "listen": [
+                            ":443"
+                        ],
+                        "logs": {},
+                        "routes": [
+                        {
+                            "handle": [
+                            {
+                                "handler": "subroute",
+                                "routes": [
+                                {
+                                    "handle": [
+                                    {
+                                        "handler": "forward_proxy"
+                                    },
+                                    {
+                                        "handler": "static_response",
+                                        "body": "This is the regular site."
+                                    }
+                                    ]
+                                }
+                                ]
+                            }
+                            ],
+                            "terminal": true
+                        }
+                        ]
+                    }
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "automate": ["localhost"]
+                },
+                "automation": {
+                    "policies": [
+                    {
+                        "issuer": {
+                            "module": "internal"
+                        }
+                    }
+                    ]
+                }
+            }
+        }
+}
