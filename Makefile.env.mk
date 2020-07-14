@@ -38,8 +38,9 @@ n02 $(n02):
 		       klzgrad_caddy_naive/caddy.klzgrad_caddy_naive
 	mkdir -p bin/
 	cp         klzgrad_caddy_naive/caddy.klzgrad_caddy_naive bin/
-	echo -e "#/bin/bash\n\nnice -n 19 ./caddy.klzgrad_caddy_naive  run -config  default.json.127.0.0.1.32018 \n" \
-		> bin/caddy.klzgrad_caddy_naive.sh
+	test -f bin/caddy.klzgrad_caddy_naive.sh || \
+		echo -e "#/bin/bash\n\nnice -n 19 ./caddy.klzgrad_caddy_naive  run -config  default.json.127.0.0.1.32018 \n" \
+		>   bin/caddy.klzgrad_caddy_naive.sh
 	chmod 755 bin/caddy.klzgrad_caddy_naive.sh
 	md5sum              klzgrad_caddy_naive/caddy*
 	ls  -l              klzgrad_caddy_naive/caddy*
@@ -78,8 +79,9 @@ n04 $(n04):
 		       03a7df4_forwardproxy/caddy.03a7df4_forwardproxy
 	mkdir -p bin/
 	cp         03a7df4_forwardproxy/caddy.03a7df4_forwardproxy bin/
-	echo -e "#/bin/bash\n\nnice -n 19 ./caddy.03a7df4_forwardproxy  run -config  default.json.127.0.0.1.42018 \n" \
-		> bin/caddy.03a7df4_forwardproxy.sh
+	test -f bin/caddy.03a7df4_forwardproxy.sh || \
+		echo -e "#/bin/bash\n\nnice -n 19 ./caddy.03a7df4_forwardproxy  run -config  default.json.127.0.0.1.42018 \n" \
+		>   bin/caddy.03a7df4_forwardproxy.sh
 	chmod 755 bin/caddy.03a7df4_forwardproxy.sh
 	md5sum              03a7df4_forwardproxy/caddy*
 	ls  -l              03a7df4_forwardproxy/caddy*
@@ -88,26 +90,25 @@ n04 $(n04):
 	@echo
 n05:=clone_and_build_naiverproxy
 n05 $(n05):
-	[ -d naiverProxy/ ] || git clone           --depth 1 https://github.com/klzgrad/naiveproxy.git    naiverProxy/ 
-	[ -d naiverProxy/ ]
-	cd naiverProxy/src && ./get-clang.sh
-	cd naiverProxy/src && ./build.sh
-#https://github.com/klzgrad/naiveproxy/releases/download/v83.0.4103.61-1/naiveproxy-v83.0.4103.61-1-linux-x64.tar.xz
-
-n05xxx:
-	rm -f      naiverProxy/caddy.naiverProxy
-	cp         naiverProxy/caddy      \
-		       naiverProxy/caddy.naiverProxy
+	[ -d naiveProxy/ ] || git clone           --depth 1 https://github.com/klzgrad/naiveproxy.git    naiveProxy/ 
+	[ -d naiveProxy/ ]
+	cd naiveProxy/src && ./get-clang.sh
+	cd naiveProxy/src && ./build.sh
+	rm -f      naiveProxy/src/out/Release/naive
+	cp         naiveProxy/src/out/Release/naive      \
+		       naiveProxy/src/out/Release/naive.build.strip.bin
 	mkdir -p bin/
-	cp         naiverProxy/caddy.naiverProxy bin/
-	echo -e "#/bin/bash\n\nnice -n 19 ./caddy.naiverProxy  run -config  default.json.127.0.0.1.42018 \n" \
-		> bin/caddy.naiverProxy.sh
-	chmod 755 bin/caddy.naiverProxy.sh
-	md5sum              naiverProxy/caddy*
-	ls  -l              naiverProxy/caddy*
+	cp         naiveProxy/src/out/Release/naive.build.strip.bin bin/
+	test -f   bin/naive.run.server.sh || \
+		echo -e "#/bin/bash\n\nnice -n 19 ./naive.build.strip.bin  naive.config.json.200.server.127.0.0.1.41080.json \n" \
+		>     bin/naive.run.server.sh
+	chmod 755 bin/naive.run.server.sh
+	md5sum              naiveProxy/src/out/Release/naive*
+	ls  -l              naiveProxy/src/out/Release/naive*
 	@echo
-	@echo sudo setcap cap_net_bind_service=+ep naiverProxy/caddy*
+	@echo sudo setcap cap_net_bind_service=+ep naiveProxy/src/out/Release/naive*
 	@echo
+#https://github.com/klzgrad/naiveproxy/releases/download/v83.0.4103.61-1/naiveproxy-v83.0.4103.61-1-linux-x64.tar.xz
 
 
 
