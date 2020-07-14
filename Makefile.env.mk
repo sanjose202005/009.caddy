@@ -88,15 +88,17 @@ n04 $(n04):
 	@echo
 	@echo sudo setcap cap_net_bind_service=+ep 03a7df4_forwardproxy/caddy*
 	@echo
+
 n05:=clone_and_build_naiverproxy
 n05 $(n05):
 	[ -d naiveProxy/ ] || git clone           --depth 1 https://github.com/klzgrad/naiveproxy.git    naiveProxy/ 
 	[ -d naiveProxy/ ]
+	rm -f      naiveProxy/src/out/Release/naive*
 	cd naiveProxy/src && ./get-clang.sh
 	cd naiveProxy/src && ./build.sh
-	rm -f      naiveProxy/src/out/Release/naive
-	cp         naiveProxy/src/out/Release/naive      \
-		       naiveProxy/src/out/Release/naive.build.strip.bin
+	llvm-strip -o \
+		naiveProxy/src/out/Release/naive.build.strip.bin \
+		naiveProxy/src/out/Release/naive      
 	mkdir -p bin/
 	cp         naiveProxy/src/out/Release/naive.build.strip.bin bin/
 	test -f   bin/naive.run.server.sh || \
