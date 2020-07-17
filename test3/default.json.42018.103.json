@@ -25,15 +25,17 @@
                         {
                            "auth_pass" : "password2",
                            "auth_user" : "username2",
+                           "dial_timeout" : 15,
                            "handler" : "forward_proxy",
                            "hide_ip" : true,
                            "hide_via" : true,
                            "probe_resistance" : {
                               "domain" : "ip.localhost"
-                           }
+                           },
+                           "response_timeout" : 15
                         }
                      ],
-                     "terminal" : true
+                     "terminal" : false
                   },
                   {
                      "handle" : [
