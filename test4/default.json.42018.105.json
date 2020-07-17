@@ -49,6 +49,13 @@
                      ]
                   },
                   {
+                     "encodings" : {
+                        "gzip" : {}
+                     },
+                     "handler" : "encode",
+                     "minimum_length" : 0
+                  },
+                  {
                      "handle" : [
                         {
                            "handler" : "templates"
