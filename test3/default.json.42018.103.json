@@ -28,6 +28,47 @@
                               {
                                  "handle" : [
                                     {
+                                       "auth_pass" : "password2",
+                                       "auth_user" : "username2",
+                                       "handler" : "forward_proxy",
+                                       "hide_ip" : true,
+                                       "hide_via" : true,
+                                       "probe_resistance" : {
+                                          "domain" : "ip.localhost"
+                                       }
+                                    }
+                                 ]
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nip top.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+
+,
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
                                        "auth_pass" : "password3",
                                        "auth_user" : "username3",
                                        "handler" : "forward_proxy",
@@ -76,47 +117,8 @@
                         }
                      ],
                      "terminal" : true
-                  },
-
-                  {
-                     "handle" : [
-                        {
-                           "handler" : "subroute",
-                           "routes" : [
-                              {
-                                 "handle" : [
-                                    {
-                                       "auth_pass" : "password2",
-                                       "auth_user" : "username2",
-                                       "handler" : "forward_proxy",
-                                       "hide_ip" : true,
-                                       "hide_via" : true,
-                                       "probe_resistance" : {
-                                          "domain" : "ip.localhost"
-                                       }
-                                    }
-                                 ]
-                              },
-                              {
-                                 "handle" : [
-                                    {
-                                       "body" : "\n\nip top.\n\n",
-                                       "handler" : "static_response"
-                                    }
-                                 ]
-                              }
-                           ]
-                        }
-                     ],
-                     "match" : [
-                        {
-                           "host" : [
-                              "ip.jjj123.com"
-                           ]
-                        }
-                     ],
-                     "terminal" : true
                   }
+
 
                ],
                "tls_connection_policies" : [
