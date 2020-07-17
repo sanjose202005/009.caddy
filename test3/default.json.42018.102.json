@@ -91,14 +91,6 @@
       },
       "tls" : {
          "automation" : {
-            "policies" : [
-               {
-                  "issuer" : {
-                     "email" : "ak2@jjj123.com",
-                     "module" : "acme"
-                  }
-               }
-            ]
          }
       }
    }
