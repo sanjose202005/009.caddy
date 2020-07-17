@@ -21,11 +21,6 @@
                ],
                "routes" : [
                   {
-                     "handle" : [
-                        {
-                           "handler" : "subroute",
-                           "routes" : [
-                              {
                                  "handle" : [
                                     {
                                        "auth_pass" : "password2",
@@ -38,7 +33,12 @@
                                        }
                                     }
                                  ]
-                              },
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
                               {
                                  "handle" : [
                                     {
@@ -66,20 +66,6 @@
                         {
                            "handler" : "subroute",
                            "routes" : [
-                              {
-                                 "handle" : [
-                                    {
-                                       "auth_pass" : "password3",
-                                       "auth_user" : "username3",
-                                       "handler" : "forward_proxy",
-                                       "hide_ip" : true,
-                                       "hide_via" : true,
-                                       "probe_resistance" : {
-                                          "domain" : "ak2.localhost"
-                                       }
-                                    }
-                                 ]
-                              },
                               {
                                  "handle" : [
                                     {
