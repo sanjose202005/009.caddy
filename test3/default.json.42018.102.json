@@ -46,7 +46,6 @@
                                        "handler" : "static_response"
                                     }
                                  ],
-
                                  "match" : [
                                     {
                                        "path" : [
@@ -57,7 +56,7 @@
                                     }
                                  ],
                                  "terminal" : true
-                              },                              
+                              },
                               {
                                  "handle" : [
                                     {
