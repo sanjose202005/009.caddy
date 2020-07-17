@@ -79,6 +79,23 @@
                   {
                      "handle" : [
                         {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ip_Server"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "delimiters" : [
+                              "{{",
+                              "}}"
+                           ],
+                           "handler" : "templates"
+                        },
+                        {
                            "browse" : {},
                            "handler" : "file_server",
                            "root" : "../www/"
