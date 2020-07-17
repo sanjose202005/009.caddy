@@ -80,6 +80,16 @@
                   {
                      "handle" : [
                         {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ak2_Server"
+                                 ]
+                              }
+                           }
+                        },
+                        {
                            "delimiters" : [
                               "{{",
                               "}}"
