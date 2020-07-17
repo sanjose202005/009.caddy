@@ -54,7 +54,7 @@
                            "hide_ip" : true,
                            "hide_via" : true,
                            "probe_resistance" : {
-                              "domain" : "github.com"
+                              "domain" : "github.localhost"
                            }
                         }
                      ]
