@@ -31,8 +31,7 @@
                            "hide_via" : true,
                            "probe_resistance" : {
                               "domain" : "ip.localhost"
-                           },
-                           "response_timeout" : 15
+                           }
                         }
                      ],
                      "terminal" : false
