@@ -23,22 +23,22 @@
                   {
                      "handle" : [
                         {
-                           "handle" : [
-                              {
-                                 "auth_pass" : "password3",
-                                 "auth_user" : "username3",
-                                 "handler" : "forward_proxy",
-                                 "hide_ip" : true,
-                                 "hide_via" : true,
-                                 "probe_resistance" : {
-                                    "domain" : "ak2.github.localhost"
-                                 }
-                              }
-                           ]
-                        },
-                        {
                            "handler" : "subroute",
                            "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "auth_pass" : "password3",
+                                       "auth_user" : "username3",
+                                       "handler" : "forward_proxy",
+                                       "hide_ip" : true,
+                                       "hide_via" : true,
+                                       "probe_resistance" : {
+                                          "domain" : "ak2.github.localhost"
+                                       }
+                                    }
+                                 ]
+                              },                              
                               {
                                  "handle" : [
                                     {
