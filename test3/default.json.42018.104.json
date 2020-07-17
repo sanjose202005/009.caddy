@@ -1,0 +1,137 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 30080,
+         "https_port" : 443,
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "auth_pass" : "password2",
+                           "auth_user" : "username2",
+                           "dial_timeout" : 15000000,
+                           "handler" : "forward_proxy",
+                           "hide_ip" : true,
+                           "hide_via" : true,
+                           "probe_resistance" : {
+                              "domain" : "ip.localhost"
+                           }
+                        }
+                     ]                     
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nip for.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ]
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nip top.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "subroute",
+                           "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nak2 for.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ]
+                              },
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nak2 top.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak2.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ],
+               "tls_connection_policies" : [
+                  {
+                     "match" : {
+                        "sni" : [
+                           "ip.jjj123.com",
+                           "ak2.jjj123.com"
+                        ]
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
