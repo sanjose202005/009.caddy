@@ -23,6 +23,20 @@
                   {
                      "handle" : [
                         {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ip_Server"
+                                 ]
+                              }
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
                            "auth_pass" : "password2",
                            "auth_user" : "username2",
                            "handler" : "forward_proxy",
@@ -37,58 +51,6 @@
                   {
                      "handle" : [
                         {
-                           "handler" : "subroute",
-                           "routes" : [
-                              {
-                                 "handle" : [
-                                    {
-                                       "body" : "\n\nip for.\n\n",
-                                       "handler" : "static_response"
-                                    }
-                                 ],
-                                 "match" : [
-                                    {
-                                       "path" : [
-                                          "/forr",
-                                          "/forr/",
-                                          "/forr/*"
-                                       ]
-                                    }
-                                 ]
-                              },
-                              {
-                                 "handle" : [
-                                    {
-                                       "body" : "\n\nip top.\n\n",
-                                       "handler" : "static_response"
-                                    }
-                                 ]
-                              }
-                           ]
-                        }
-                     ],
-                     "match" : [
-                        {
-                           "host" : [
-                              "ip.jjj123.com"
-                           ]
-                        }
-                     ],
-                     "terminal" : true
-                  },
-                  {
-                     "handle" : [
-                        {
-                           "handler" : "headers",
-                           "response" : {
-                              "set" : {
-                                 "Server" : [
-                                    "ip_Server"
-                                 ]
-                              }
-                           }
-                        },
-                        {
                            "handler" : "templates"
                         },
                         {
@@ -100,7 +62,9 @@
                      "match" : [
                         {
                            "host" : [
-                              "ak2.jjj123.com"
+                              "148.163.76.139",
+                              "ak2.jjj123.com",
+                              "ip.jjj123.com"
                            ]
                         }
                      ],
