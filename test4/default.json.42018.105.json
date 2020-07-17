@@ -80,23 +80,6 @@
                   {
                      "handle" : [
                         {
-                           "handler" : "headers",
-                           "response" : {
-                              "set" : {
-                                 "Server" : [
-                                    "ak2_Server"
-                                 ]
-                              }
-                           }
-                        },
-                        {
-                           "delimiters" : [
-                              "{{",
-                              "}}"
-                           ],
-                           "handler" : "templates"
-                        },
-                        {
                            "browse" : {},
                            "handler" : "file_server",
                            "root" : "www/"
