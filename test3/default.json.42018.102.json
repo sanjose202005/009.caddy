@@ -45,16 +45,6 @@
                                        "handler" : "static_response"
                                     }
                                  ],
-
-                                 "match" : [
-                                    {
-                                       "path" : [
-                                          "/forr",
-                                          "/forr/",
-                                          "/forr/*"
-                                       ]
-                                    }
-                                 ],
                                  "terminal" : true
                               },                              
                               {
