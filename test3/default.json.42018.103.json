@@ -21,24 +21,41 @@
                ],
                "routes" : [
                   {
-                                 "handle" : [
-                                    {
-                                       "auth_pass" : "password2",
-                                       "auth_user" : "username2",
-                                       "handler" : "forward_proxy",
-                                       "hide_ip" : true,
-                                       "hide_via" : true,
-                                       "probe_resistance" : {
-                                          "domain" : "ip.localhost"
-                                       }
-                                    }
-                                 ]
+                     "handle" : [
+                        {
+                           "auth_pass" : "password2",
+                           "auth_user" : "username2",
+                           "handler" : "forward_proxy",
+                           "hide_ip" : true,
+                           "hide_via" : true,
+                           "probe_resistance" : {
+                              "domain" : "ip.localhost"
+                           }
+                        }
+                     ]
                   },
                   {
                      "handle" : [
                         {
                            "handler" : "subroute",
                            "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nip for.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ]
+                              },
                               {
                                  "handle" : [
                                     {
@@ -58,14 +75,29 @@
                         }
                      ],
                      "terminal" : true
-                  }
-
-,
+                  },
                   {
                      "handle" : [
                         {
                            "handler" : "subroute",
                            "routes" : [
+                              {
+                                 "handle" : [
+                                    {
+                                       "body" : "\n\nak2 for.\n\n",
+                                       "handler" : "static_response"
+                                    }
+                                 ],
+                                 "match" : [
+                                    {
+                                       "path" : [
+                                          "/forr",
+                                          "/forr/",
+                                          "/forr/*"
+                                       ]
+                                    }
+                                 ]
+                              },
                               {
                                  "handle" : [
                                     {
@@ -86,8 +118,6 @@
                      ],
                      "terminal" : true
                   }
-
-
                ],
                "tls_connection_policies" : [
                   {
