@@ -83,24 +83,6 @@
                               {
                                  "handle" : [
                                     {
-                                       "body" : "\n\nak2 forr.\n\n",
-                                       "handler" : "static_response"
-                                    }
-                                 ],
-                                 "match" : [
-                                    {
-                                       "path" : [
-                                          "/forr",
-                                          "/forr/",
-                                          "/forr/*"
-                                       ]
-                                    }
-                                 ],
-                                 "terminal" : true
-                              },
-                              {
-                                 "handle" : [
-                                    {
                                        "body" : "\n\nak2 top.\n\n",
                                        "handler" : "static_response"
                                     }
