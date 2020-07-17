@@ -23,20 +23,6 @@
                   {
                      "handle" : [
                         {
-                           "handler" : "headers",
-                           "response" : {
-                              "set" : {
-                                 "Server" : [
-                                    "www_Server"
-                                 ]
-                              }
-                           }
-                        }
-                     ]
-                  },
-                  {
-                     "handle" : [
-                        {
                            "auth_pass" : "password2",
                            "auth_user" : "username2",
                            "handler" : "forward_proxy",
