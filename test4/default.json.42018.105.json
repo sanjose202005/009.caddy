@@ -82,7 +82,7 @@
                         {
                            "browse" : {},
                            "handler" : "file_server",
-                           "root" : "www/"
+                           "root" : "../www/"
                         }
                      ],
                      "match" : [
