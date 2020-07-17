@@ -80,7 +80,8 @@
                   {
                      "match" : {
                         "sni" : [
-                           "ip.jjj123.com"
+                           "ip.jjj123.com",
+                           "ak2.jjj123.com"
                         ]
                      }
                   }
