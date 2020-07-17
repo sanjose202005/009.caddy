@@ -21,14 +21,18 @@
                ],
                "routes" : [
                   {
-                     "handler" : "headers",
-                     "response" : {
-                        "set" : {
-                           "Server" : [
-                              "www_Server"
-                           ]
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "www_Server"
+                                 ]
+                              }
+                           }
                         }
-                     }
+                     ]
                   },
                   {
                      "handle" : [
