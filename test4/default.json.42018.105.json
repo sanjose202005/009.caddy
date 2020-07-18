@@ -55,7 +55,7 @@
                               "gzip" : {}
                            },
                            "handler" : "encode",
-                           "minimum_length" : 20
+                           "minimum_length" : 80
                         }
                      ]
                   },
