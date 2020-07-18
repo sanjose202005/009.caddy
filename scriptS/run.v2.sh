@@ -10,7 +10,7 @@ do
    fi
 done
 
-for aa1 in default.json default.json.42018.*
+for aa1 in default.json default.json.42018.*.json
 do
    if [ -f ${aa1} ] ; then
        ff1=${aa1}
