@@ -31,7 +31,7 @@ if [ -n "$1" ]; then
     ff1=$1
 fi
 
-echo "nice -n 19 ${prog}  run -config ${ff1}"
-nice       -n 19 ${prog}  run -config ${ff1} 
-echo "nice -n 19 ${prog}  run -config ${ff1}"
+echo "nice -n 19 ${prog}     ${ff1}"
+nice       -n 19 ${prog}     ${ff1} 
+echo "nice -n 19 ${prog}     ${ff1}"
 
