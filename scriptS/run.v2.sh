@@ -20,6 +20,10 @@ if [ -n "$1" ]; then
     ff1=$1
 fi
 
+echo
 echo "nice -n 19 ${prog}  run -config ${ff1}"
+echo
 nice       -n 19 ${prog}  run -config ${ff1} 
+echo
 echo "nice -n 19 ${prog}  run -config ${ff1}"
+echo
