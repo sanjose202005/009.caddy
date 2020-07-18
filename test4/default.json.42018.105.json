@@ -32,9 +32,7 @@
                               }
                            }
                         }
-                     ]
-                  },
-                  {
+                     ],
                      "handle" : [
                         {
                            "auth_pass" : "password2",
@@ -46,9 +44,7 @@
                               "domain" : "ip.localhost"
                            }
                         }
-                     ]
-                  },
-                  {
+                     ],
                      "handle" : [
                         {
                            "encodings" : {
@@ -57,9 +53,7 @@
                            "handler" : "encode",
                            "minimum_length" : 80
                         }
-                     ]
-                  },
-                  {
+                     ],
                      "handle" : [
                         {
                            "handler" : "templates"
