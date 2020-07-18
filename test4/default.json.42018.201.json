@@ -42,7 +42,7 @@
                            "handler" : "forward_proxy",
                            "hide_ip" : true,
                            "hide_via" : true,
-                           "upstream": "https://127.0.0.1:41080",
+                           "upstream": "http://127.0.0.1:41080",
                            "probe_resistance" : {
                               "domain" : "ip.localhost"
                            }
