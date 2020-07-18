@@ -31,11 +31,7 @@
                                  ]
                               }
                            }
-                        }
-                     ]
-                  },
-                  {
-                     "handle" : [
+                        },
                         {
                            "auth_pass" : "password2",
                            "auth_user" : "username2",
@@ -45,22 +41,14 @@
                            "probe_resistance" : {
                               "domain" : "ip.localhost"
                            }
-                        }
-                     ]
-                  },
-                  {
-                     "handle" : [
+                        },
                         {
                            "encodings" : {
                               "gzip" : {}
                            },
                            "handler" : "encode",
                            "minimum_length" : 80
-                        }
-                     ]
-                  },
-                  {
-                     "handle" : [
+                        },
                         {
                            "handler" : "templates"
                         },
