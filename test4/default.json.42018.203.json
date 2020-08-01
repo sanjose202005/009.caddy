@@ -1,0 +1,139 @@
+{
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 30080,
+         "https_port" : 443,
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "auth_pass" : "password2",
+                           "auth_user" : "username2",
+                           "handler" : "forward_proxy",
+                           "hide_ip" : true,
+                           "hide_via" : true,
+                           "probe_resistance" : {
+                              "domain" : "ip.localhost"
+                           },
+                           "upstream" : "http://127.0.0.1:41080"
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ip_Server"
+                                 ]
+                              }
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "encodings" : {
+                              "gzip" : {}
+                           },
+                           "handler" : "encode",
+                           "minimum_length" : 80
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "www/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "148.163.76.139",
+                              "ak2.jjj123.com",
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "reverse_proxy",
+                           "headers" : {
+                              "request" : {
+                                 "set" : {
+                                    "Host" : [
+                                       "www.ptwxz.com"
+                                    ],
+                                    "X-Forwarded-Proto" : [
+                                       "https"
+                                    ]
+                                 }
+                              }
+                           },
+                           "transport" : {
+                              "protocol" : "http",
+                              "tls" : {
+                                 "insecure_skip_verify" : true
+                              }
+                           },
+                           "upstreams" : [
+                              {
+                                 "dial" : "https://www.ptwxz.com"
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak3.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ],
+               "tls_connection_policies" : [
+                  {
+                     "match" : {
+                        "sni" : [
+                           "148.163.76.139",
+                           "ip.jjj123.com",
+                           "ak2.jjj123.com"
+                        ]
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
