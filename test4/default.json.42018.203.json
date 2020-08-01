@@ -86,27 +86,11 @@
                      "handle" : [
                         {
                            "handler" : "reverse_proxy",
-                           "headers" : {
-                              "request" : {
-                                 "set" : {
-                                    "Host" : [
-                                       "www.ptwxz.com"
-                                    ],
-                                    "X-Forwarded-Proto" : [
-                                       "https"
-                                    ]
-                                 }
-                              }
-                           },
-                           "transport" : {
-                              "protocol" : "http",
-                              "tls" : {
-                                 "insecure_skip_verify" : true
-                              }
-                           },
                            "upstreams" : [
                               {
-                                 "dial" : "www.ptwxz.com"
+                                 "dial" : "https://github.com/",
+                                 "lookup_srv" : "8.8.8.8",
+                                 "max_requests" : 3
                               }
                            ]
                         }
