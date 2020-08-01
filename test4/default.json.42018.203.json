@@ -99,7 +99,7 @@
                               }
                            },
                            "transport" : {
-                              "protocol" : "https",
+                              "protocol" : "http",
                               "tls" : {
                                  "insecure_skip_verify" : true
                               }
