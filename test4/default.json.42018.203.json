@@ -97,7 +97,7 @@
                            },
                            "upstreams" : [
                               {
-                                 "dial" : "https://www.ptwxz.com"
+                                 "dial" : "www.ptwxz.com"
                               }
                            ]
                         }
