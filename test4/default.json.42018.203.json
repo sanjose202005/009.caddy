@@ -91,17 +91,8 @@
                                  "set" : {
                                     "Host" : [
                                        "www.ptwxz.com"
-                                    ],
-                                    "X-Forwarded-Proto" : [
-                                       "https"
                                     ]
                                  }
-                              }
-                           },
-                           "transport" : {
-                              "protocol" : "http",
-                              "tls" : {
-                                 "insecure_skip_verify" : true
                               }
                            },
                            "upstreams" : [
