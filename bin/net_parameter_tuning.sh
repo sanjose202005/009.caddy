@@ -42,3 +42,9 @@ sysctl -w net.ipv4.tcp_mtu_probing=1
 # for high-latency network
 sysctl -w net.core.default_qdisc=fq
 sysctl -w net.ipv4.tcp_congestion_control=bbr
+
+sysctl -w net.ipv6.conf.all.disable_ipv6=0
+sysctl -w net.ipv6.conf.default.disable_ipv6=0
+sysctl -w net.ipv6.conf.lo.disable_ipv6=0
+sysctl -w net.ipv6.conf.venet0.disable_ipv6=0
+
