@@ -28,15 +28,15 @@ sysctl -w net.ipv4.tcp_fin_timeout=30
 # short keepalive time
 sysctl -w net.ipv4.tcp_keepalive_time=1200
 # outbound port range
-sysctl -w net.ipv4.ip_local_port_range=10000 65000
+sysctl -w net.ipv4.ip_local_port_range="10000 65000"
 # max SYN backlog
 sysctl -w net.ipv4.tcp_max_syn_backlog=4096
 # max timewait sockets held by system simultaneously
 sysctl -w net.ipv4.tcp_max_tw_buckets=5000
 # TCP receive buffer
-sysctl -w net.ipv4.tcp_rmem=4096 87380 67108864
+sysctl -w net.ipv4.tcp_rmem="4096 87380 67108864"
 # TCP write buffer
-sysctl -w net.ipv4.tcp_wmem=4096 65536 67108864
+sysctl -w net.ipv4.tcp_wmem="4096 65536 67108864"
 # turn on path MTU discovery
 sysctl -w net.ipv4.tcp_mtu_probing=1
 # for high-latency network

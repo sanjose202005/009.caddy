@@ -85,6 +85,16 @@
                   {
                      "handle" : [
                         {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Host" : [
+                                    "github.com"
+                                 ]
+                              }
+                           }
+                        },
+                        {
                            "handler" : "reverse_proxy",
                            "upstreams" : [
                               {
