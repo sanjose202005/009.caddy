@@ -21,7 +21,7 @@ do
    fi
 done
 
-for aa1 in naive.config.json.1*.json
+for aa1 in naive.config.json.c1*.json
 do
    if [ -f ${aa1} ] ; then
        ff1=${aa1}
