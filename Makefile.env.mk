@@ -10,8 +10,8 @@ GoTOP:=\
 
 # https://github.com/caddyserver/caddy
 #
-n01:=clone_or_pull_caddy_by_git
-n01 $(n01):
+c01:=clone_or_pull_caddy_by_git__not_meet_naive
+c01 $(c01):
 	[ -d caddy_git_newest/ ] || git clone "https://github.com/caddyserver/caddy.git"
 	[ -d caddy_git_newest/ ] || mv caddy caddy_git_newest 
 	[ -d caddy_git_newest/ ]
@@ -27,8 +27,8 @@ n01 $(n01):
 	caddy_git_newest/cmd/caddy/caddy.git.newest.strip.bin version
 
 # https://github.com/klzgrad/naiveproxy#why-not-use-http2-proxy-from-browser-directly
-n02:=clone_or_pull_caddy_by_git_klzgrad_forwardproxy_naive
-n02 $(n02):
+c02:=clone_or_pull_caddy_by_git_klzgrad_forwardproxy_naive
+c02 $(c02):
 	[ -d klzgrad_caddy_naive/ ] || git clone           -b naive https://github.com/klzgrad/forwardproxy  klzgrad_caddy_naive/ 
 	[ -d klzgrad_caddy_naive/ ]
 	cd klzgrad_caddy_naive/ && \
@@ -47,8 +47,9 @@ n02 $(n02):
 	@echo
 	@echo sudo setcap cap_net_bind_service=+ep klzgrad_caddy_naive/caddy*
 	@echo
-n03:=clone_or_pull_caddy_by_git_klzgrad_forwardproxy_caddy2
-n03 $(n03):
+
+c03:=clone_or_pull_caddy_by_git_klzgrad_forwardproxy_caddy2__not_mit_naive
+c03 $(c03):
 	[ -d klzgrad_caddy_caddy2/ ] || git clone           -b caddy2 https://github.com/klzgrad/forwardproxy  klzgrad_caddy_caddy2/ 
 	[ -d klzgrad_caddy_caddy2/ ]
 	cd klzgrad_caddy_caddy2/ && \
@@ -66,8 +67,8 @@ n03 $(n03):
 	@echo
 	@echo sudo setcap cap_net_bind_service=+ep klzgrad_caddy_caddy2/caddy*
 	@echo
-n04:=clone_or_pull_caddy_by_git_forwardproxy_03a7df4
-n04 $(n04):
+c04:=clone_or_pull_caddy_by_git_forwardproxy_03a7df4__not_meet_naive_new_version
+c04 $(c04):
 	[ -d 03a7df4_forwardproxy/ ] || git clone           -b caddy2 https://github.com/caddyserver/forwardproxy  03a7df4_forwardproxy/ 
 	[ -d 03a7df4_forwardproxy/ ]
 	cd 03a7df4_forwardproxy/ && \
@@ -333,9 +334,9 @@ ctls:=check_tls
 $(ctls):=openssl s_client -host ip.jjj123.com -port 443 < /dev/null
 
 
-#showRunHelpListLast += n01 x1 x2 lm c1 s1 conf
+#showRunHelpListLast += c01 x1 x2 lm c1 s1 conf
 #showRunHelpListLast += tr tg t21 t22 t23 t24 t25 
-#showRunHelpListLast += n03 n04 
-showRunHelpListLast += bc xx n02 n05 X ctls
+#showRunHelpListLast += c03 c04 
+showRunHelpListLast += bc xx c02 n05 X ctls
 
 .PHONY : x1 x2 c1 conf
