@@ -1,0 +1,140 @@
+{
+   "logging": { "logs": { "log01": { "level": "panic" , "writer": { "output": "discard" } , "exclude": ["http.log.error"] }} },
+   "admin" : {
+      "config" : {
+         "persist" : false
+      },
+      "disabled" : false,
+      "enforce_origin" : false,
+      "listen" : "127.0.0.1:42018",
+      "origins" : [
+         "127.0.0.1:42018"
+      ]
+   },
+   "apps" : {
+      "http" : {
+         "http_port" : 30080,
+         "https_port" : 443,
+         "servers" : {
+            "srv0" : {
+               "listen" : [
+                  "0.0.0.0:443"
+               ],
+               "routes" : [
+                  {
+                     "handle" : [
+                        {
+                           "auth_pass" : "password2",
+                           "auth_user" : "username2",
+                           "handler" : "forward_proxy",
+                           "hide_ip" : true,
+                           "hide_via" : true,
+                           "probe_resistance" : {
+                              "domain" : "ip.localhost"
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Server" : [
+                                    "ip_Server"
+                                 ]
+                              }
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "encodings" : {
+                              "gzip" : {}
+                           },
+                           "handler" : "encode",
+                           "minimum_length" : 80
+                        }
+                     ]
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "templates"
+                        },
+                        {
+                           "browse" : {},
+                           "handler" : "file_server",
+                           "root" : "www/"
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "148.163.76.139",
+                              "ak2.jjj123.com",
+                              "ip.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  },
+                  {
+                     "handle" : [
+                        {
+                           "handler" : "headers",
+                           "response" : {
+                              "set" : {
+                                 "Host" : [
+                                    "github.com"
+                                 ]
+                              }
+                           }
+                        },
+                        {
+                           "handler" : "reverse_proxy",
+                           "upstreams" : [
+                              {
+                                 "dial" : "https://github.com/",
+                                 "lookup_srv" : "8.8.8.8",
+                                 "max_requests" : 3
+                              }
+                           ]
+                        }
+                     ],
+                     "match" : [
+                        {
+                           "host" : [
+                              "ak3.jjj123.com"
+                           ]
+                        }
+                     ],
+                     "terminal" : true
+                  }
+               ],
+               "logs": { "skip_hosts": [
+                           "148.163.76.139",
+                           "ip.jjj123.com",
+                           "ak2.jjj123.com",
+                           "ak3.jjj123.com"
+               ], "skip_unmapped_hosts": true },
+               "tls_connection_policies" : [
+                  {
+                     "match" : {
+                        "sni" : [
+                           "148.163.76.139",
+                           "ip.jjj123.com",
+                           "ak2.jjj123.com",
+                           "ak3.jjj123.com"
+                        ]
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+}
