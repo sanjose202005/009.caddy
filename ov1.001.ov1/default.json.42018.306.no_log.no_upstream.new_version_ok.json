@@ -114,6 +114,11 @@
                      "terminal" : true
                   }
                ],
+               "logs": { "skip_hosts": [
+                           "104.161.79.65",
+                           "ov1.jjj123.com",
+                           "ov2.jjj123.com"
+               ], "skip_unmapped_hosts": true },
                "tls_connection_policies" : [
                   {
                      "match" : {
