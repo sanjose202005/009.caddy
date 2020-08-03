@@ -1,5 +1,5 @@
 {
-   "logging": { "logs": { "log01": { "level": "panic" , "writer": { "output": "discard" } }} },
+   "logging": { "logs": { "log01": { "level": "panic" , "writer": { "output": "discard" } , "exclude": ["http.log.error"] }} },
    "admin" : {
       "config" : {
          "persist" : false
