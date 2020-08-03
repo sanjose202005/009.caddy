@@ -1,5 +1,4 @@
 {
-   "logging": { "logs": { "log01": { "level": "info" }} },
    "admin" : {
       "config" : {
          "persist" : false
